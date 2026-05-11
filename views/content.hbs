@@ -1,0 +1,44 @@
+{{!-- content page --}}
+<main class="main">
+    <section class="media_type">
+        <div class="filter-sort-bar">
+            <button class="option" id="sort-btn">Тип сортировки</button>
+            <button class="option" id="year-filter-btn">Год</button>
+            <button class="option" id="genre-filter-btn">Жанр</button>
+            <button class="option" id="rating-filter-btn">Рейтинг</button>
+        </div>
+
+        <div class="popup" id="sort-popup">
+            <p class="popup-option" data-sort="year-new">По году с нового</p>
+            <p class="popup-option" data-sort="year-old">По году со старых</p>
+            <p class="popup-option" data-sort="alpha-asc">По алфавиту с начала</p>
+            <p class="popup-option" data-sort="alpha-desc">По алфавиту с конца</p>
+        </div>
+
+        <div class="popup" id="year-popup">
+            <input type="number" id="year-input" placeholder="Введите год">
+            <button id="year-apply">Применить</button>
+        </div>
+
+        <div class="popup" id="genre-popup">
+            <div id="genre-options"></div>
+            <button id="genre-apply">Применить</button>
+        </div>
+
+        <div class="popup" id="rating-popup">
+            <input type="number" id="rating-input" placeholder="Минимальный рейтинг" step="0.1" min="0" max="10">
+            <button id="rating-apply">Применить</button>
+        </div>
+
+        <div class="content" id="content-container" data-category="{{category}}">
+            {{#each items}}
+            <a class="content__block" href="/player/{{../category}}/{{this.id}}">
+                <img class="content__img" src="/covers/{{this.cover_image}}" alt="{{this.title}}">
+                <p class="content__name">{{this.title}}</p>
+            </a>
+            {{/each}}
+        </div>
+    </section>
+</main>
+
+<script src="/static/js/sort_and_filter.js"></script>

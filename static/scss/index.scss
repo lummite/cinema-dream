@@ -1,0 +1,226 @@
+@use 'partials/variables' as vars;
+
+.main {
+  width: 81.25rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.media_type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+
+  .type_name {
+    width: 100%;
+    background-color: vars.$color-element;
+    font-family: vars.$font-DaysOne;
+    border-radius: 0.625rem;
+    padding: 0.4375rem 0 0.4375rem 2.5rem;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 0 1.25rem;
+
+    .content__block {
+      width: 11.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: 0.5s ease, margin 0.5s ease;
+
+      img {
+        width: 100%;
+        height: 16.875rem;
+        object-fit: cover;
+        border-radius: 0.625rem;
+      }
+
+      .content__name {
+        width: 100%;
+        text-align: center;
+        margin-top: 0.625rem;
+      }
+
+      &:hover {
+        transform: scale(1.25);
+        margin: 1.25rem;
+      }
+    }
+  }
+}
+
+// =================== Адаптив ===================
+
+// Мобильный вертикальный
+@media (max-width: 430px) and (orientation: portrait) {
+  .main {
+    width: 100%;
+    padding: 0 0.5rem 2.5rem 0.5rem;
+  }
+
+  .media_type {
+    gap: 2rem;
+
+    .type_name {
+      font-size: 1.25rem;
+      padding-left: 1rem;
+    }
+
+    .content {
+      gap: 1rem;
+      padding: 1rem 2.5rem;
+
+      .content__block {
+        width: calc(50% - 0.625rem);
+        img {
+          height: 16rem;
+        }
+        .content__name {
+          font-size: 1.1rem;
+          text-wrap: wrap;
+          white-space: normal;
+          word-wrap: break-word;
+          overflow-wrap: anywhere;
+        }
+        &:hover {
+          transition: none !important;
+          transform: none !important;
+          margin: initial !important;
+          color: vars.$absolute-white !important;
+        }
+      }
+    }
+  }
+}
+
+// Мобильный горизонтальный
+@media (min-width: 431px) and (max-width: 932px) and (orientation: landscape) {
+  .main {
+    width: 95%;
+    padding: 0 0.5rem 2.5rem 0.5rem;
+  }
+
+  .media_type {
+    gap: 1rem;
+
+    .type_name {
+      font-size: 1.1rem;
+      padding-left: 1rem;
+    }
+
+    .content {
+      gap: 0.875rem;
+
+      .content__block {
+        width: calc(20% - 0.75rem); // 3 блока в ряд
+        img {
+          height: 13rem;
+        }
+        .content__name {
+          font-size: 1.1rem;
+          white-space: normal;
+          word-wrap: break-word;
+          overflow-wrap: anywhere;
+        }
+        &:hover {
+          transition: none !important;
+          transform: none !important;
+          margin: initial !important;
+          color: vars.$absolute-white !important;
+        }
+      }
+    }
+  }
+}
+
+// Планшетный вертикальный
+@media (min-width: 431px) and (max-width: 768px) and (orientation: portrait) {
+  .main {
+    width: 90%;
+    padding: 0 0.5rem 4.5rem 0.5rem;
+  }
+
+  .media_type {
+    gap: 1rem;
+
+    .type_name {
+      font-size: 1.15rem;
+      padding-left: 1rem;
+    }
+
+    .content {
+      gap: 1.2rem;
+
+      .content__block {
+        width: calc(33.33% - 1rem);
+        img {
+          height: 16rem;
+        }
+        .content__name {
+          font-size: 1.4rem;
+          white-space: normal;
+          word-wrap: break-word;
+          overflow-wrap: anywhere;
+        }
+        &:hover {
+          transition: none !important;
+          transform: none !important;
+          margin: initial !important;
+          color: vars.$absolute-white !important;
+        }
+      }
+    }
+  }
+}
+
+// Планшетный горизонтальный
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  .main {
+    width: 85%;
+    padding: 0 0.5rem 2.5rem 0.5rem;
+  }
+
+  .media_type {
+    gap: 1rem;
+
+    .type_name {
+      font-size: 1.2rem;
+      padding-left: 1rem;
+    }
+
+    .content {
+      gap: 1.25rem;
+
+      .content__block {
+        width: calc(25% - 2rem);
+        img {
+          height: 15rem;
+        }
+        .content__name {
+          font-size: 1.15rem;
+          white-space: normal;
+          word-wrap: break-word;
+          overflow-wrap: anywhere;
+        }
+        &:hover {
+          transition: none !important;
+          transform: none !important;
+          margin: initial !important;
+          color: vars.$absolute-white !important;
+        }
+      }
+    }
+  }
+}

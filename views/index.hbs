@@ -1,0 +1,40 @@
+{{!-- index content --}}
+<main class="main">
+    <section class="media_type">
+        <a class="type_name" href="/content?category=movie">ФИЛЬМЫ</a>
+        <div class="content">
+            {{#each movies}}
+            <a class="content__block" href="/player/movies/{{this.id}}">
+                <img class="content__img" src="/covers/{{this.cover_image}}" alt="{{this.title}}">
+                <p class="content__name">{{this.title}}</p>
+            </a>
+            {{/each}}
+        </div>
+    </section>
+
+    <section class="media_type">
+        <a class="type_name" href="/content?category=series">СЕРИАЛЫ</a>
+        <div class="content">
+            {{#each series}}
+            <a class="content__block" href="/player/serials/{{this.id}}">
+                <img class="content__img" src="/covers/{{this.cover_image}}" alt="{{this.title}}">
+                <p class="content__name">{{this.title}}</p>
+            </a>
+            {{/each}}
+        </div>
+    </section>
+
+    <section class="media_type">
+        <a class="type_name" href="/content?category=anime">АНИМЕ</a>
+        <div class="content">
+            {{#each anime}}
+            <a class="content__block" href="/player/anime/{{this.id}}">
+                <img class="content__img" src="/covers/{{this.cover_image}}" alt="{{this.title}}">
+                <p class="content__name">{{this.title}}</p>
+            </a>
+            {{/each}}
+        </div>
+    </section>
+</main>
+
+<script src="/static/js/content_limit.js"></script>

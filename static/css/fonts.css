@@ -1,0 +1,9 @@
+/* Local Days One font. Place downloaded font files in /static/fonts/ */
+@font-face {
+  font-family: "Days One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/DaysOne-Regular.woff2") format("woff2"),
+       url("/static/fonts/DaysOne-Regular.woff") format("woff");
+}

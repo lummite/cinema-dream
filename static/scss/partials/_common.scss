@@ -1,0 +1,46 @@
+@use 'variables' as vars;
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: vars.$color-background;
+  color: vars.$color-text;
+  font-family: vars.$font-DaysOne;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+  margin: 2.5rem 4.375vw 3.75rem 2.5vw;
+}
+
+a {
+  color: vars.$color-text;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: vars.$color-link-hover;
+  }
+}

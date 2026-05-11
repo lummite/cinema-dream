@@ -1,0 +1,16 @@
+node_modules/
+node_modules
+.env
+.env.example
+npm-debug.log
+coverage/
+.vscode/
+*.log
+media/
+media
+SQL-scripts/
+SQL-scripts
+add_content_tk.py
+README_DEV.md
+README_RU.md
+README_old.md

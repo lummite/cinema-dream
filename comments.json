@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1778150580044,
+    "itemType": "anime",
+    "itemId": "9",
+    "userId": "1778150548021",
+    "username": "admin",
+    "rating": 10,
+    "text": "Очень классное",
+    "createdAt": "2026-05-07T10:43:00.044Z",
+    "updatedAt": "2026-05-07T10:43:00.044Z"
+  },
+  {
+    "id": 1778151250493,
+    "itemType": "anime",
+    "itemId": "10",
+    "userId": "1778150548021",
+    "username": "admin",
+    "rating": 10,
+    "text": "Лучшее",
+    "createdAt": "2026-05-07T10:54:10.493Z",
+    "updatedAt": "2026-05-07T10:54:10.493Z"
+  },
+  {
+    "id": 1778151262530,
+    "itemType": "series",
+    "itemId": "18",
+    "userId": "1778150548021",
+    "username": "admin",
+    "rating": 4,
+    "text": "Затянуто",
+    "createdAt": "2026-05-07T10:54:22.530Z",
+    "updatedAt": "2026-05-07T10:54:22.530Z"
+  },
+  {
+    "id": 1778151705893,
+    "itemType": "movie",
+    "itemId": "1",
+    "userId": "1778150548021",
+    "username": "admin",
+    "rating": 7,
+    "text": "Топ",
+    "createdAt": "2026-05-07T11:01:45.893Z",
+    "updatedAt": "2026-05-07T11:01:45.893Z"
+  },
+  {
+    "id": 1778152423755,
+    "itemType": "anime",
+    "itemId": "10",
+    "userId": "1778152403131",
+    "username": "user",
+    "rating": 7,
+    "text": "Круто",
+    "createdAt": "2026-05-07T11:13:43.755Z",
+    "updatedAt": "2026-05-07T11:13:43.755Z"
+  },
+  {
+    "id": 1778153122737,
+    "itemType": "series",
+    "itemId": "15",
+    "userId": "1778152403131",
+    "username": "user",
+    "rating": 7,
+    "text": "Ого",
+    "createdAt": "2026-05-07T11:25:22.737Z",
+    "updatedAt": "2026-05-07T11:25:22.737Z"
+  },
+  {
+    "id": 1778153388394,
+    "itemType": "movie",
+    "itemId": "7",
+    "userId": "1778153366738",
+    "username": "user1",
+    "rating": 8,
+    "text": "Круто",
+    "createdAt": "2026-05-07T11:29:48.394Z",
+    "updatedAt": "2026-05-07T11:29:48.394Z"
+  }
+]

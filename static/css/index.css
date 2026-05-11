@@ -1,0 +1,193 @@
+.main {
+  width: 81.25rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.media_type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.media_type .type_name {
+  width: 100%;
+  background-color: #001d22;
+  font-family: "Days One", "Trebuchet MS", sans-serif;
+  border-radius: 0.625rem;
+  padding: 0.4375rem 0 0.4375rem 2.5rem;
+  text-align: left;
+  font-size: 1rem;
+}
+.media_type .content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0 1.25rem;
+}
+.media_type .content .content__block {
+  width: 11.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s ease, margin 0.5s ease;
+}
+.media_type .content .content__block img {
+  width: 100%;
+  height: 16.875rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}
+.media_type .content .content__block .content__name {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.625rem;
+}
+.media_type .content .content__block:hover {
+  transform: scale(1.25);
+  margin: 1.25rem;
+}
+
+@media (max-width: 430px) and (orientation: portrait) {
+  .main {
+    width: 100%;
+    padding: 0 0.5rem 2.5rem 0.5rem;
+  }
+  .media_type {
+    gap: 2rem;
+  }
+  .media_type .type_name {
+    font-size: 1.25rem;
+    padding-left: 1rem;
+  }
+  .media_type .content {
+    gap: 1rem;
+    padding: 1rem 2.5rem;
+  }
+  .media_type .content .content__block {
+    width: calc(50% - 0.625rem);
+  }
+  .media_type .content .content__block img {
+    height: 16rem;
+  }
+  .media_type .content .content__block .content__name {
+    font-size: 1.1rem;
+    text-wrap: wrap;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+  .media_type .content .content__block:hover {
+    transition: none !important;
+    transform: none !important;
+    margin: initial !important;
+    color: #ffffff !important;
+  }
+}
+@media (min-width: 431px) and (max-width: 932px) and (orientation: landscape) {
+  .main {
+    width: 95%;
+    padding: 0 0.5rem 2.5rem 0.5rem;
+  }
+  .media_type {
+    gap: 1rem;
+  }
+  .media_type .type_name {
+    font-size: 1.1rem;
+    padding-left: 1rem;
+  }
+  .media_type .content {
+    gap: 0.875rem;
+  }
+  .media_type .content .content__block {
+    width: calc(20% - 0.75rem);
+  }
+  .media_type .content .content__block img {
+    height: 13rem;
+  }
+  .media_type .content .content__block .content__name {
+    font-size: 1.1rem;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+  .media_type .content .content__block:hover {
+    transition: none !important;
+    transform: none !important;
+    margin: initial !important;
+    color: #ffffff !important;
+  }
+}
+@media (min-width: 431px) and (max-width: 768px) and (orientation: portrait) {
+  .main {
+    width: 90%;
+    padding: 0 0.5rem 4.5rem 0.5rem;
+  }
+  .media_type {
+    gap: 1rem;
+  }
+  .media_type .type_name {
+    font-size: 1.15rem;
+    padding-left: 1rem;
+  }
+  .media_type .content {
+    gap: 1.2rem;
+  }
+  .media_type .content .content__block {
+    width: calc(33.33% - 1rem);
+  }
+  .media_type .content .content__block img {
+    height: 16rem;
+  }
+  .media_type .content .content__block .content__name {
+    font-size: 1.4rem;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+  .media_type .content .content__block:hover {
+    transition: none !important;
+    transform: none !important;
+    margin: initial !important;
+    color: #ffffff !important;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  .main {
+    width: 85%;
+    padding: 0 0.5rem 2.5rem 0.5rem;
+  }
+  .media_type {
+    gap: 1rem;
+  }
+  .media_type .type_name {
+    font-size: 1.2rem;
+    padding-left: 1rem;
+  }
+  .media_type .content {
+    gap: 1.25rem;
+  }
+  .media_type .content .content__block {
+    width: calc(25% - 2rem);
+  }
+  .media_type .content .content__block img {
+    height: 15rem;
+  }
+  .media_type .content .content__block .content__name {
+    font-size: 1.15rem;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+  .media_type .content .content__block:hover {
+    transition: none !important;
+    transform: none !important;
+    margin: initial !important;
+    color: #ffffff !important;
+  }
+}

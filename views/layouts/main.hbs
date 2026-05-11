@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cinema dream</title>
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/content.css">
+    <link rel="stylesheet" href="/static/css/player.css">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    {{{head}}}
+</head>
+
+<body>
+    <header>
+        <div class="header_top">
+            <a class="header_logo" href="/"></a>
+            <div class="header_links">
+                <a class="header_link" href="/content?category=movie">Кино</a>
+                <a class="header_link" href="/content?category=anime">Аниме</a>
+                <a class="header_link" href="/content?category=series">Сериалы</a>
+            </div>
+        </div>
+
+        <div class="search_bar_container">
+            <input type="text" class="search_bar" placeholder="Поиск по названию" id="search_input" autocomplete="off">
+            <ul class="list_search" id="search_results"></ul>
+        </div>
+
+        <div class="header_buttons">
+            <button class="regIn">РЕГИСТРАЦИЯ</button>
+            <button class="logIn">ВХОД</button>
+        </div>
+        <div class="header_user hidden">
+            <div class="user-avatar"></div>
+            <span class="user-name"></span>
+            <button class="logoutBtn">ВЫХОД</button>
+        </div>
+    </header>
+
+    <div class="auth-modal hidden" id="authModal">
+        <div class="auth-modal__backdrop" data-action="close"></div>
+        <div class="auth-modal__window">
+            <button class="auth-modal__close" data-action="close">×</button>
+            <div class="auth-modal__tabs">
+                <button type="button" class="auth-tab auth-tab--active" data-mode="login">Вход</button>
+                <button type="button" class="auth-tab" data-mode="register">Регистрация</button>
+            </div>
+            <form id="authForm" class="auth-form">
+                <div class="auth-form__field">
+                    <label for="authLogin">Логин</label>
+                    <input id="authLogin" name="username" type="text" autocomplete="username" required>
+                </div>
+                <div class="auth-form__field">
+                    <label for="authPassword">Пароль</label>
+                    <input id="authPassword" name="password" type="password" autocomplete="current-password" required>
+                </div>
+                <div class="auth-form__actions">
+                    <button type="submit" class="auth-form__submit">Войти</button>
+                </div>
+                <p class="auth-form__message" id="authMessage"></p>
+            </form>
+        </div>
+    </div>
+
+    {{{body}}}
+
+    <footer>
+        <div class="links">
+            <a href="/">СТАТЬ СПОНСОРОМ</a>
+            <a href="/">ТЕХ. ПОДДЕРЖКА</a>
+        </div>
+        <a class="footer_logo" href="/"></a>
+        <div class="footer_text">
+            Все материалы на сайте представлены исключительно для ознакомительного просмотра. Мы не храним пиратский
+            контент и не размещаем материалы для скачивания — сайт создан в образовательных целях и служит демонстрацией
+            интерфейса для просмотра.
+            Пользователь несёт ответственность за использование материалов в соответствии с законодательством своей
+            страны. Администрация оставляет за собой право удалять материалы и вносить изменения в контент без
+            предварительного уведомления. Благодарим за понимание и желаем приятного просмотра.
+        </div>
+        <script src="/static/js/search_bar.js"></script>
+        <script src="/static/js/auth_client.js"></script>
+    </footer>
+</body>
+
+</html>

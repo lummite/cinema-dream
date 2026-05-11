@@ -1,0 +1,126 @@
+{{!-- player page --}}
+<main class="main">
+    <section class="metadata">
+        <div class="cover">
+            <img src="/covers/{{item.cover_image}}" alt="cover">
+        </div>
+        <div class="info">
+            <h1 class="info__title">{{item.title}}</h1>
+            <div class="info__block">
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Год выпуска:</p>
+                    <p class="info__block__row__contain">{{item.year}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Страна:</p>
+                    <p class="info__block__row__contain">{{item.country}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Жанр:</p>
+                    <p class="info__block__row__contain">
+                        {{#if genres}}
+                        {{#each genres}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+                        {{else}}-{{/if}}
+                    </p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Режиссер:</p>
+                    <p class="info__block__row__contain">{{item.director}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Актеры:</p>
+                    <p class="info__block__row__contain">{{item.actors}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Длительность:</p>
+                    <p class="info__block__row__contain">{{item.duration}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Бюджет:</p>
+                    <p class="info__block__row__contain">{{item.budget}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Сборы:</p>
+                    <p class="info__block__row__contain">{{item.box_office}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Рейтинг:</p>
+                    <p class="info__block__row__contain">{{item.rating}}</p>
+                </div>
+                <div class="info__block__row">
+                    <p class="info__block__row__type">Ограничение:</p>
+                    <p class="info__block__row__contain">{{item.age_limit}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="player">
+        <video id="moviePlayer" controls width="100%" preload="metadata">
+            <source src="/media/{{video_file}}" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+    </section>
+
+    <section class="description">
+        <p class="desc_title">Описание</p>
+        <p class="desc_text">{{item.description}}</p>
+    </section>
+
+    <section class="comments" id="commentsSection">
+        <div class="comments__header">
+            <h2 class="comments__title">Комментарии</h2>
+            <p class="comments__subtitle">Каждый авторизованный пользователь может оставить одну оценку и отзыв для
+                этого фильма.</p>
+        </div>
+
+        <div class="comment-block">
+            <p class="comment-hint" id="commentHint">Войдите, чтобы оставить отзыв.</p>
+            <form id="commentForm" class="comment-form hidden">
+                <input type="hidden" name="itemType" value="{{type}}">
+                <input type="hidden" name="itemId" value="{{item.id}}">
+                <div class="comment-form__field">
+                    <label for="commentRating">Оценка</label>
+                    <select id="commentRating" name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="comment-form__field">
+                    <label for="commentText">Отзыв</label>
+                    <textarea id="commentText" name="text" maxlength="600" rows="4"
+                        placeholder="Напишите отзыв до 100 слов"></textarea>
+                </div>
+                <div class="comment-form__actions">
+                    <button type="submit" class="comment-submit">Отправить отзыв</button>
+                </div>
+                <p class="comment-message" id="commentMessage"></p>
+            </form>
+        </div>
+
+        <div class="comments-list" id="commentsList">
+            {{#if comments.length}}
+            {{#each comments}}
+            <article class="comment-card" data-username="{{this.username}}" data-rating="{{this.rating}}">
+                <div class="comment-card__header">
+                    <span class="comment-user">{{this.username}}</span>
+                    <span class="comment-rating">{{this.rating}}/10</span>
+                </div>
+                <p class="comment-text">{{this.text}}</p>
+                <p class="comment-date">{{this.updatedAt}}{{#unless this.updatedAt}}{{this.createdAt}}{{/unless}}</p>
+            </article>
+            {{/each}}
+            {{else}}
+            <p class="comments__empty">Комментариев пока нет.</p>
+            {{/if}}
+        </div>
+    </section>
+</main>

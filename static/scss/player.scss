@@ -1,0 +1,333 @@
+@use 'partials/variables' as vars;
+
+.metadata {
+  width: 81.25rem;
+  height: 28.75rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  .cover {
+    width: 18.125rem;
+    height: 28.75rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.625rem;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    &__title {
+      font-size: 2.25rem;
+      text-align: left;
+    }
+
+    &__block {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.25rem;
+      gap: 0.3125rem;
+
+      &__row {
+        display: flex;
+        flex-direction: row;
+        gap: 0.3125rem;
+
+        &__type {
+          width: 12.5rem;
+          height: 2.125rem;
+          align-items: center;
+          text-align: left;
+        }
+
+        &__contain {
+          width: 47.625rem;
+          height: 2.125rem;
+          overflow: hidden;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.player {
+  width: 81.25rem;
+  height: auto;
+  background-color: grey;
+}
+
+.description {
+  width: 81.25rem;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  height: auto;
+
+  .desc_title {
+    width: 100%;
+    padding: 0.4375rem 0 0.5rem 1.25rem;
+    background-color: vars.$color-element;
+    border-radius: 0.625rem;
+  }
+
+  .desc_text {
+    width: 97%;
+    text-align: justify;
+  }
+}
+
+// ==================== АДАПТИВ ====================
+
+// Мобильный вертикальный
+@media (max-width: 430px) and (orientation: portrait) {
+  .metadata {
+    width: 85%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .cover {
+      width: 100%;
+      max-width: 14rem;
+      height: auto;
+    }
+
+    .info {
+      width: 100%;
+      max-width: 100%;
+
+      .info__title {
+        font-size: 1.7rem;
+      }
+
+      .info__block {
+        .info__block__row {
+          gap: unset !important;
+          justify-content: space-between !important;
+        }
+
+        .info__block__row__type {
+          width: auto;
+        }
+
+        .info__block__row__contain {
+          width: auto;
+          height: auto;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .player {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 100%;
+
+    .desc_title {
+      font-size: 1.5rem !important;
+    }
+
+    .desc_text {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+// Мобильный горизонтальный
+@media (min-width: 431px) and (max-width: 932px) and (orientation: landscape) {
+  .metadata {
+    width: 85%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .cover {
+      width: 100%;
+      max-width: 14rem;
+      height: auto;
+    }
+
+    .info {
+      width: 100%;
+      max-width: 100%;
+
+      .info__title {
+        font-size: 1.7rem;
+      }
+
+      .info__block {
+        .info__block__row {
+          gap: unset !important;
+          justify-content: space-between !important;
+        }
+
+        .info__block__row__type {
+          width: auto;
+        }
+
+        .info__block__row__contain {
+          width: auto;
+          height: auto;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .player {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 100%;
+
+    .desc_title {
+      font-size: 1.5rem !important;
+    }
+
+    .desc_text {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+// Планшетный вертикальный
+@media (min-width: 601px) and (max-width: 768px) and (orientation: portrait) {
+  .metadata {
+    width: 85%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .cover {
+      width: 100%;
+      max-width: 14rem;
+      height: auto;
+    }
+
+    .info {
+      width: 100%;
+      max-width: 100%;
+
+      .info__title {
+        font-size: 1.7rem;
+      }
+
+      .info__block {
+        .info__block__row {
+          gap: unset !important;
+          justify-content: space-between !important;
+        }
+
+        .info__block__row__type {
+          width: auto;
+        }
+
+        .info__block__row__contain {
+          width: auto;
+          height: auto;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .player {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 100%;
+
+    .desc_title {
+      font-size: 1.5rem !important;
+    }
+
+    .desc_text {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+// Планшетный горизонтальный
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  .metadata {
+    width: 85%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .cover {
+      width: 100%;
+      max-width: 14rem;
+      height: auto;
+    }
+
+    .info {
+      width: 100%;
+      max-width: 100%;
+
+      .info__title {
+        font-size: 1.7rem;
+      }
+
+      .info__block {
+        .info__block__row {
+          gap: unset !important;
+          justify-content: space-between !important;
+        }
+
+        .info__block__row__type {
+          width: auto;
+        }
+
+        .info__block__row__contain {
+          width: auto;
+          height: auto;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .player {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 100%;
+
+    .desc_title {
+      font-size: 1.5rem !important;
+    }
+
+    .desc_text {
+      font-size: 1.5rem !important;
+    }
+  }
+}

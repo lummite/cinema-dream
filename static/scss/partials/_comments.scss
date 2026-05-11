@@ -1,0 +1,135 @@
+@use 'variables' as vars;
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.comment-form.hidden {
+    display: none;
+}
+
+.comment-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-form__field label {
+    font-size: 0.9rem;
+    color: vars.$color-text;
+}
+
+.comment-form__field input,
+.comment-form__field select,
+.comment-form__field textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: vars.$color-text;
+    font-family: vars.$font-DaysOne;
+    font-size: 0.95rem;
+}
+
+.comment-form__field select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: vars.$color-background;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+.comment-form__field select option {
+    background: rgba(0, 255, 255, 0.12);
+    color: vars.$color-text;
+}
+
+.comment-form__actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-submit {
+    width: auto;
+    padding: 0.9rem 1.2rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: #00ffff;
+    color: #000000;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.comment-message {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+.comment-message--success {
+    color: #8fff90;
+}
+
+.comment-message--error {
+    color: #ff9f9f;
+}
+
+.comments__header {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.comment-card {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.comment-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.comment-user,
+.comment-rating {
+    font-weight: 700;
+    color: vars.$color-text;
+}
+
+
+.comment-text {
+    color: vars.$color-text;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.comment-date {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}

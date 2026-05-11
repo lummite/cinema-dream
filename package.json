@@ -1,0 +1,26 @@
+{
+  "name": "cinema_dream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "build:sass": "sass static/scss:static/css --no-source-map",
+    "watch:sass": "sass --watch static/scss:static/css",
+    "build": "npm run build:sass"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-handlebars": "^7.0.7",
+    "mssql": "^9.1.1",
+    "dotenv": "^16.1.4"
+  },
+  "devDependencies": {
+    "sass": "^1.72.0",
+    "nodemon": "^3.0.1"
+  }
+}
