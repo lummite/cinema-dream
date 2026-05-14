@@ -1,5 +1,6 @@
+// Client-side auth and comment logic
 document.addEventListener('DOMContentLoaded', () => {
-    const authModal = document.getElementById('authModal');
+    const authModal = document.getElementById('authModal')
     const authForm = document.getElementById('authForm');
     const authMessage = document.getElementById('authMessage');
     const authTabs = document.querySelectorAll('.auth-tab');
@@ -16,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentRating = document.getElementById('commentRating');
     const commentText = document.getElementById('commentText');
     const commentMessage = document.getElementById('commentMessage');
-    let authMode = 'login';
+    let authMode = 'login'
 
+    // Auth modal state and controls
     function openAuthModal(mode) {
         authMode = mode;
         authModal.classList.remove('hidden');
@@ -241,23 +243,21 @@ document.addEventListener('DOMContentLoaded', () => {
         commentForm.addEventListener('submit', async event => {
             event.preventDefault();
             console.log('Comment form submitted');
-            const username = userName?.textContent || '';
-            const token = getToken();
+            const username = userName?.textContent || ''
+            const token = getToken()
             if (!token || !username) {
                 if (commentMessage) {
-                    commentMessage.textContent = 'Сначала войдите.';
-                    commentMessage.className = 'comment-message comment-message--error';
+                    commentMessage.textContent = 'Сначала войдите.'
+                    commentMessage.className = 'comment-message comment-message--error'
                 }
-                return;
+                return
             }
 
-            const itemType = commentForm.itemType.value;
-            const itemId = commentForm.itemId.value;
-            const rating = parseInt(commentRating.value, 10);
-            const text = commentText.value.trim();
-            const words = text.split(/\s+/).filter(Boolean);
-
-            console.log('Submitting comment:', { itemType, itemId, rating, text });
+            const itemType = commentForm.itemType.value
+            const itemId = commentForm.itemId.value
+            const rating = parseInt(commentRating.value, 10)
+            const text = commentText.value.trim()
+            const words = text.split(/\s+/).filter(Boolean)
 
             if (words.length === 0) {
                 if (commentMessage) {
@@ -290,8 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify({ itemType, itemId, rating, text })
                 });
-                const result = await response.json();
-                console.log('Response:', result);
+                const result = await response.json()
                 if (result.error) {
                     if (commentMessage) {
                         commentMessage.textContent = result.error;

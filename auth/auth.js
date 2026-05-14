@@ -1,48 +1,43 @@
-const fs = require('fs');
-const crypto = require('crypto');
+const fs = require('fs')
+const path = require('path')
+const crypto = require('crypto')
 
-const USERS_FILE = '../users.json';
+const USERS_FILE = path.join(__dirname, '..', 'users.json')
 
-// Хранилище сессий в памяти
-const sessions = {};
+// In-memory session storage for the demo
+const sessions = {}
 
+// Read users from disk, create file if needed
 function readUsers() {
-  if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, '[]');
-  return JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'));
+  if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, '[]')
+  return JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'))
 }
 
+// Save users list back to disk
 function writeUsers(users) {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 }
 
+// Create salted hash for a password
 function hashPassword(password) {
-  const salt = crypto.randomBytes(16).toString('hex');
-  const hash = crypto.createHmac('sha256', salt).update(password).digest('hex');
-  return `${salt}:${hash}`;
+  const salt = crypto.randomBytes(16).toString('hex')
+  const hash = crypto.createHmac('sha256', salt).update(password).digest('hex')
+  return `${salt}:${hash}`
 }
 
+// Check password against stored hash
 function verifyPassword(password, stored) {
-  const [salt, hash] = stored.split(':');
-  const check = crypto.createHmac('sha256', salt).update(password).digest('hex');
-  return check === hash;
+  const [salt, hash] = stored.split(':')
+  const check = crypto.createHmac('sha256', salt).update(password).digest('hex')
+  return check === hash
 }
 
+// Generate a random session token
 function generateToken() {
-  return crypto.randomBytes(32).toString('hex');
+  return crypto.randomBytes(32).toString('hex')
 }
 
-// Middleware — проверяет токен, редиректит если не авторизован
-function requireAuth(req, res, next) {
-  const token = req.headers['authorization'] || req.query.token;
-  if (sessions[token]) {
-    req.user = sessions[token]; // { userId, username }
-    next();
-  } else {
-    res.redirect('/login.html');
-  }
-}
-
-// Роуты авторизации — подключаются в server.js
+// Routes for auth in the web app
 function setupAuthRoutes(app) {
   app.post('/api/register', (req, res) => {
     const { username, password } = req.body;
@@ -101,4 +96,4 @@ function getSession(token) {
   return sessions[token]
 }
 
-module.exports = { setupAuthRoutes, requireAuth, getSession };
+module.exports = { setupAuthRoutes, getSession };

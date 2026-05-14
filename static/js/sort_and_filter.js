@@ -1,5 +1,6 @@
+// Filter and sort controls for the content page
 document.addEventListener('DOMContentLoaded', () => {
-    const contentContainer = document.getElementById('content-container');
+    const contentContainer = document.getElementById('content-container')
 
     // popup элементы
     const popups = {

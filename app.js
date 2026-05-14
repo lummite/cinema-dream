@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars')
 
 const app = express()
 
+// Express server and view engine setup
 const port = process.env.PORT || 4000
 
 const MEDIA_FOLDER = path.join(process.cwd(), 'media')
@@ -27,6 +28,42 @@ app.use('/covers', express.static(MEDIA_FOLDER))
 
 app.use(express.json())
 
+function normalizeCategory(category) {
+    if (!category) return 'movies'
+    if (category === 'movie') return 'movies'
+    if (category === 'series') return 'serials'
+    return category
+}
+
+const CONTENT_CONFIG = {
+    movies: { title: 'Фильмы', list: db.getAllMovies, filter: filters => db.getMoviesFiltered(filters) },
+    serials: { title: 'Сериалы', list: db.getAllSeries, filter: filters => db.getSeriesAnimeFiltered('Сериал', filters) },
+    anime: { title: 'Аниме', list: db.getAllAnime, filter: filters => db.getSeriesAnimeFiltered('Аниме', filters) }
+}
+
+function getContentConfig(category) {
+    return CONTENT_CONFIG[normalizeCategory(category)] || CONTENT_CONFIG.movies
+}
+
+function getGenreCategory(category) {
+    if (category === 'movies') return 'movie'
+    if (category === 'serials') return 'series'
+    if (category === 'anime') return 'anime'
+    return 'movie'
+}
+
+async function getSeriesPlayerData(itemId, commentType) {
+    const id = parseInt(itemId, 10)
+    const item = await db.getSeriesById(id)
+    if (!item) return null
+    const genres = await db.getSeriesGenres(id)
+    const episodes = await db.getEpisodesBySeriesId(id)
+    if (!episodes || episodes.length === 0) return null
+    const video_file = episodes[0].movie_file
+    const itemComments = comments.getComments(commentType, itemId)
+    return { item, genres, video_file, itemComments }
+}
+
 app.get('/', async (req, res) => {
     try {
         const movies = await db.getRandomMovies(8)
@@ -39,26 +76,12 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/content', async (req, res) => {
-    let category = req.query.category || 'movies'
-    if (category === 'movie') category = 'movies'
-    if (category === 'series') category = 'serials'
+    const category = normalizeCategory(req.query.category || 'movies')
+    const config = getContentConfig(category)
 
     try {
-        let title, items
-        if (category === 'movies') {
-            title = 'Фильмы'
-            items = await db.getAllMovies()
-        } else if (category === 'serials') {
-            title = 'Сериалы'
-            items = await db.getAllSeries()
-        } else if (category === 'anime') {
-            title = 'Аниме'
-            items = await db.getAllAnime()
-        } else {
-            title = 'Категория'
-            items = []
-        }
-        res.render('content', { title, items, category })
+        const items = await config.list()
+        res.render('content', { title: config.title, items, category })
     } catch (err) {
         res.status(500).send(err.message)
     }
@@ -66,37 +89,29 @@ app.get('/content', async (req, res) => {
 
 app.get('/player/:content_type/:item_id', async (req, res) => {
     const { content_type, item_id } = req.params
-    //console.log('Player request:', content_type, item_id)
 
     try {
         if (content_type === 'movies') {
-            const item = await db.getMovieById(parseInt(item_id, 10))
-            //console.log('Movie item:', item ? item.id : 'null')
+            const itemId = parseInt(item_id, 10)
+            const item = await db.getMovieById(itemId)
             if (!item) return res.status(404).send('Элемент не найден')
-            const genres = await db.getMovieGenres(parseInt(item_id, 10))
+
+            const genres = await db.getMovieGenres(itemId)
             const video_file = item.movie_file
             const itemComments = comments.getComments('movie', item_id)
             res.render('player', { item, type: 'movies', title: item.title, genres, video_file, comments: itemComments })
-        } else if (content_type === 'serials') {
-            const item = await db.getSeriesById(parseInt(item_id, 10))
-            //console.log('Series item:', item ? item.id : 'null')
-            if (!item) return res.status(404).send('Элемент не найден')
-            const genres = await db.getSeriesGenres(parseInt(item_id, 10))
-            const episodes = await db.getEpisodesBySeriesId(parseInt(item_id, 10))
-            if (!episodes || episodes.length === 0) return res.status(404).send('Эпизоды не найдены')
-            const video_file = episodes[0].movie_file
-            const itemComments = comments.getComments('series', item_id)
-            res.render('player', { item, type: 'series', title: item.title, genres, video_file, comments: itemComments })
-        } else if (content_type === 'anime') {
-            const item = await db.getSeriesById(parseInt(item_id, 10))
-            //console.log('Anime item:', item ? item.id : 'null')
-            if (!item) return res.status(404).send('Элемент не найден')
-            const genres = await db.getSeriesGenres(parseInt(item_id, 10))
-            const episodes = await db.getEpisodesBySeriesId(parseInt(item_id, 10))
-            if (!episodes || episodes.length === 0) return res.status(404).send('Эпизоды не найдены')
-            const video_file = episodes[0].movie_file
-            const itemComments = comments.getComments('anime', item_id)
-            res.render('player', { item, type: 'anime', title: item.title, genres, video_file, comments: itemComments })
+        } else if (content_type === 'serials' || content_type === 'anime') {
+            const data = await getSeriesPlayerData(item_id, content_type)
+            if (!data) return res.status(404).send('Элемент не найден')
+
+            res.render('player', {
+                item: data.item,
+                type: content_type,
+                title: data.item.title,
+                genres: data.genres,
+                video_file: data.video_file,
+                comments: data.itemComments
+            })
         } else {
             res.status(404).send('Элемент не найден')
         }
@@ -125,18 +140,13 @@ app.get('/api/search', async (req, res) => {
 })
 
 app.get('/api/filter', async (req, res) => {
-    let category = req.query.category || 'movies'
-    if (category === 'movie') category = 'movies'
-    if (category === 'series') category = 'serials'
+    const category = normalizeCategory(req.query.category || 'movies')
     const year = req.query.year ? parseInt(req.query.year, 10) : null
     const rating = req.query.rating ? parseFloat(req.query.rating) : null
     const sort = req.query.sort
     const genres = req.query['genres[]'] ? (Array.isArray(req.query['genres[]']) ? req.query['genres[]'] : [req.query['genres[]']]) : []
     try {
-        let items = []
-        if (category === 'movies') items = await db.getMoviesFiltered({ year, rating, sort, genres })
-        else if (category === 'serials') items = await db.getSeriesAnimeFiltered('Сериал', { year, rating, sort, genres })
-        else if (category === 'anime') items = await db.getSeriesAnimeFiltered('Аниме', { year, rating, sort, genres })
+        const items = await getContentConfig(category).filter({ year, rating, sort, genres })
         res.json(items)
     } catch (err) {
         res.status(500).send(err.message)
@@ -144,11 +154,9 @@ app.get('/api/filter', async (req, res) => {
 })
 
 app.get('/api/genres', async (req, res) => {
-    let category = req.query.category || 'movies'
-    if (category === 'movie') category = 'movies'
-    if (category === 'series') category = 'serials'
+    const category = normalizeCategory(req.query.category || 'movies')
     try {
-        const normalized = category === 'movies' ? 'movie' : category === 'serials' ? 'series' : 'anime'
+        const normalized = getGenreCategory(category)
         const genres = await db.getAllGenres(normalized)
         res.json(genres)
     } catch (err) {

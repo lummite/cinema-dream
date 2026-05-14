@@ -1,7 +1,8 @@
-const input = document.getElementById("search_input");
-const resultsList = document.getElementById("search_results");
+// Search bar behavior: query server and show results
+const input = document.getElementById("search_input")
+const resultsList = document.getElementById("search_results")
 
-let timeout = null;
+let timeout = null
 
 // принимаем текст
 input.addEventListener("input", () => {
@@ -48,11 +49,10 @@ function showResults(results) {
         li.textContent = item.title;
 
         li.addEventListener("click", () => {
-            window.location.href = `/player/${item.type}/${item.id}`;
-        });
-        console.log('Search result item:', item.type);
+            window.location.href = `/player/${item.type}/${item.id}`
+        })
 
-        resultsList.appendChild(li);
+        resultsList.appendChild(li)
     });
 
     resultsList.classList.add("active");

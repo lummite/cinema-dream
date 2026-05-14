@@ -1,3 +1,4 @@
+// Database helper functions for the Cinema Dream app
 const sql = require('mssql');
 
 // Simplified connection: use explicit env vars. If DB_PORT is provided, connect by TCP port.

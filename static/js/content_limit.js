@@ -1,4 +1,4 @@
-// ограничение количества блоков content в строке
+// Limit number of content cards to keep layout tidy
 function limitContentBlocks() {
     const contentSections = document.querySelectorAll('.content');
 
