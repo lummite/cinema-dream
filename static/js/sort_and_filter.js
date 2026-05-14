@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(res => res.json())
             .then(items => {
                 contentContainer.innerHTML = '';
-                if(items.length === 0) {
+                if (items.length === 0) {
                     contentContainer.innerHTML = '<p class="no-results">Ничего не найдено</p>';
                     return;
                 }

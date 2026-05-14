@@ -15,7 +15,7 @@ function limitContentBlocks() {
             maxBlocks = 6;
         } else if (window.matchMedia("(min-width: 1024px) and (max-width: 1365px) and (orientation: landscape)").matches) {
             maxBlocks = 8;
-        }else if (window.matchMedia("(min-width: 1366px)").matches) {
+        } else if (window.matchMedia("(min-width: 1366px)").matches) {
             maxBlocks = 6;
         }
 
