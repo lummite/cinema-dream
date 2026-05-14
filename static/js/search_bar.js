@@ -1,4 +1,5 @@
-// Search bar behavior: query server and show results
+// Client-side search for the site header.
+// Sends typed queries to the server and shows matching content in a dropdown list.
 const input = document.getElementById("search_input")
 const resultsList = document.getElementById("search_results")
 

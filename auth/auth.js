@@ -1,3 +1,5 @@
+// Authentication helper for Cinema Dream.
+// Supports user registration, login, logout, and session token management using a local JSON file.
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')

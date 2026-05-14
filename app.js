@@ -1,3 +1,5 @@
+// Main server entrypoint for Cinema Dream.
+// This file configures Express, registers routes, and renders pages for movies, serials, anime, search, filters, and comments.
 require('dotenv').config()
 const express = require('express')
 const path = require('path')

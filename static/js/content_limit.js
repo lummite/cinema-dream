@@ -1,4 +1,5 @@
-// Limit number of content cards to keep layout tidy
+// Control how many content cards are shown per row.
+// This script hides extra blocks depending on screen size to keep the page looking neat.
 function limitContentBlocks() {
     const contentSections = document.querySelectorAll('.content');
 

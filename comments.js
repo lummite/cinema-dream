@@ -1,3 +1,5 @@
+// Simple comments storage for Cinema Dream.
+// Reads and writes comments from a local JSON file and supports fetching and upserting entries.
 const fs = require('fs')
 
 const COMMENTS_FILE = './comments.json'

@@ -1,4 +1,5 @@
-// Filter and sort controls for the content page
+// Controls filtering and sorting on the content list page.
+// This script opens popups, gathers filter values, and requests updated content from the server.
 document.addEventListener('DOMContentLoaded', () => {
     const contentContainer = document.getElementById('content-container')
 

@@ -1,4 +1,5 @@
-// Client-side auth and comment logic
+// Handles user authentication and comment posting on the client.
+// Manages the login modal, session token, UI updates, and comment form submission.
 document.addEventListener('DOMContentLoaded', () => {
     const authModal = document.getElementById('authModal')
     const authForm = document.getElementById('authForm');

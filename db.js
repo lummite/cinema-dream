@@ -1,4 +1,5 @@
-// Database helper functions for the Cinema Dream app
+// Database helper functions for Cinema Dream.
+// This module connects to MS SQL and provides queries for movies, series, anime, genres, and filtered lists.
 const sql = require('mssql');
 
 // Simplified connection: use explicit env vars. If DB_PORT is provided, connect by TCP port.
