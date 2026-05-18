@@ -1,7 +1,7 @@
 {{!-- index content --}}
 <main class="main">
     <section class="media_type">
-        <a class="type_name" href="/content?category=movie">ФИЛЬМЫ</a>
+        <a class="type_name" href="/content?category=movies">ФИЛЬМЫ</a>
         <div class="content">
             {{#each movies}}
             <a class="content__block" href="/player/movies/{{this.id}}">
@@ -13,7 +13,7 @@
     </section>
 
     <section class="media_type">
-        <a class="type_name" href="/content?category=series">СЕРИАЛЫ</a>
+        <a class="type_name" href="/content?category=serials">СЕРИАЛЫ</a>
         <div class="content">
             {{#each series}}
             <a class="content__block" href="/player/serials/{{this.id}}">

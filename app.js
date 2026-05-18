@@ -30,13 +30,6 @@ app.use('/covers', express.static(MEDIA_FOLDER))
 
 app.use(express.json())
 
-function normalizeCategory(category) {
-    if (!category) return 'movies'
-    if (category === 'movie') return 'movies'
-    if (category === 'series') return 'serials'
-    return category
-}
-
 const CONTENT_CONFIG = {
     movies: { title: 'Фильмы', list: db.getAllMovies, filter: filters => db.getMoviesFiltered(filters) },
     serials: { title: 'Сериалы', list: db.getAllSeries, filter: filters => db.getSeriesAnimeFiltered('Сериал', filters) },
@@ -44,7 +37,7 @@ const CONTENT_CONFIG = {
 }
 
 function getContentConfig(category) {
-    return CONTENT_CONFIG[normalizeCategory(category)] || CONTENT_CONFIG.movies
+    return CONTENT_CONFIG[category] || CONTENT_CONFIG.movies
 }
 
 function getGenreCategory(category) {
@@ -78,7 +71,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/content', async (req, res) => {
-    const category = normalizeCategory(req.query.category || 'movies')
+    const category = req.query.category || 'movies'
     const config = getContentConfig(category)
 
     try {
@@ -142,7 +135,7 @@ app.get('/api/search', async (req, res) => {
 })
 
 app.get('/api/filter', async (req, res) => {
-    const category = normalizeCategory(req.query.category || 'movies')
+    const category = req.query.category || 'movies'
     const year = req.query.year ? parseInt(req.query.year, 10) : null
     const rating = req.query.rating ? parseFloat(req.query.rating) : null
     const sort = req.query.sort
@@ -156,7 +149,7 @@ app.get('/api/filter', async (req, res) => {
 })
 
 app.get('/api/genres', async (req, res) => {
-    const category = normalizeCategory(req.query.category || 'movies')
+    const category = req.query.category || 'movies'
     try {
         const normalized = getGenreCategory(category)
         const genres = await db.getAllGenres(normalized)
